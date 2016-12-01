@@ -1,5 +1,6 @@
 package com.hubfintech.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -18,26 +19,34 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "T_CONTA")
-public class Conta {
+public class Conta implements Serializable {
+
+	private static final long serialVersionUID = 8240753739994340360L;
 
 	@Id
 	@Column(name = "ID_CONTA")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
 	@Column(name = "DSC_NOME")
 	private String nome;
+	
 	@Column(name = "DT_CRIACAO")
 	private Date dataCriacao;
+	
 	@Column(name = "DSC_STATUS")
 	@Enumerated(EnumType.ORDINAL)
 	private Status status;
+	
 	@ManyToOne
 	@JoinColumn(name = "ID_CONTA_PAI")
 	private Conta contaPai;
-	@ManyToOne(fetch = FetchType.LAZY)
+	
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ID_PESSOA")
 	private Pessoa pessoa;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "contaPai")
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "contaPai")
 	private List<Conta> contasFilhas;
 
 	public String getNome() {

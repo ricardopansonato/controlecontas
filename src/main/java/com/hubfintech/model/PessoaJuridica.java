@@ -1,17 +1,21 @@
 package com.hubfintech.model;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="T_PESSOA_JURIDICA")
+@DiscriminatorValue(value="T_PESSOA_JURIDICA")
 public class PessoaJuridica extends Pessoa {
 	
-	@Column(name = "NR_CNPJ")
+	private static final long serialVersionUID = -5012016293456676005L;
+
+	@Column(name = "NR_CNPJ", unique = true)
 	private String cnpj;
+	
 	@Column(name = "DSC_RAZAO_SOCIAL")
 	private String razaoSocial;
+	
 	@Column(name = "DSC_NOME_FANTASIA")
 	private String nomeFantasia;
 	

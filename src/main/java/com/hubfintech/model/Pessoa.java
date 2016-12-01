@@ -1,5 +1,7 @@
 package com.hubfintech.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -15,7 +17,9 @@ import javax.persistence.Table;
 @Table(name="T_PESSOA")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="FROM_CLASS", discriminatorType=DiscriminatorType.STRING)
-public abstract class Pessoa {
+public class Pessoa implements Serializable {
+	
+	private static final long serialVersionUID = 2127766090105924109L;
 	
 	@Id
 	@Column(name = "ID_PESSOA")
@@ -26,4 +30,7 @@ public abstract class Pessoa {
 		return id;
 	}
 
+	public void setId(long id) {
+		this.id = id;
+	}
 }

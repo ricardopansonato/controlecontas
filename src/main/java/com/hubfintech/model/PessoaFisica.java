@@ -3,20 +3,24 @@ package com.hubfintech.model;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="T_PESSOA_FISICA")
+@DiscriminatorValue(value="T_PESSOA_FISICA")
 public class PessoaFisica extends Pessoa {
 	
+	private static final long serialVersionUID = 6597449127143514520L;
+
 	@Column(name = "DSC_NOME")
 	private String nome;
-	@Column(name = "NR_CPF")
+	
+	@Column(name = "NR_CPF", unique = true)
 	private String cpf;
-	@Temporal(value=TemporalType.DATE)
+	
+	@Temporal(value=TemporalType.TIMESTAMP)
 	@Column(name = "DT_NASCIMENTO")
 	private Date dataNascimento;
 	
