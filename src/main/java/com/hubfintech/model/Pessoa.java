@@ -1,6 +1,7 @@
 package com.hubfintech.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -29,7 +30,7 @@ public class Pessoa implements Serializable {
 	private long id;
 	
 	@OneToMany(mappedBy = "pessoa")
-	private List<Conta> contas;
+	private List<Conta> contas = new ArrayList<>();
 	
 	public long getId() {
 		return id;
@@ -38,5 +39,12 @@ public class Pessoa implements Serializable {
 	public void setId(long id) {
 		this.id = id;
 	}
-	
+
+	public List<Conta> getContas() {
+		return contas;
+	}
+
+	public void setContas(List<Conta> contas) {
+		this.contas = contas;
+	}
 }
