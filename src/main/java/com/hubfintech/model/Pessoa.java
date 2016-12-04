@@ -26,8 +26,6 @@ public class Pessoa implements Serializable {
 	@Column(name = "ID_PESSOA")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-
-	private List<Conta> contas;
 	
 	public long getId() {
 		return id;
@@ -35,13 +33,5 @@ public class Pessoa implements Serializable {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public List<Conta> getContas() {
-		return contas;
-	}
-
-	public void setContas(List<Conta> contas) {
-		this.contas = contas;
 	}
 }
