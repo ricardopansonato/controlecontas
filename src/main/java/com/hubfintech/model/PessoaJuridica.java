@@ -4,8 +4,11 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
+import org.hibernate.annotations.DiscriminatorOptions;
+
 @Entity
 @DiscriminatorValue(value="T_PESSOA_JURIDICA")
+@DiscriminatorOptions(force=true)
 public class PessoaJuridica extends Pessoa {
 	
 	private static final long serialVersionUID = -5012016293456676005L;

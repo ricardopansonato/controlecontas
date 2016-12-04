@@ -8,8 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.DiscriminatorOptions;
+
 @Entity
 @DiscriminatorValue(value="T_PESSOA_FISICA")
+@DiscriminatorOptions(force=true)
 public class PessoaFisica extends Pessoa {
 	
 	private static final long serialVersionUID = 6597449127143514520L;
