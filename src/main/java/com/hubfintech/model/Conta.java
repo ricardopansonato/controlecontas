@@ -8,7 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,11 +41,11 @@ public class Conta implements Serializable {
 	@JoinColumn(name = "ID_CONTA_PAI")
 	private Conta contaPai;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = { javax.persistence.CascadeType.REFRESH })
+	@ManyToOne
 	@JoinColumn(name = "ID_PESSOA")
 	private Pessoa pessoa;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "contaPai", cascade = { javax.persistence.CascadeType.REFRESH }, orphanRemoval = true)
+	@OneToMany(mappedBy = "contaPai", cascade = { javax.persistence.CascadeType.ALL }, orphanRemoval = true)
 	private List<Conta> contasFilhas;
 
 	public String getNome() {

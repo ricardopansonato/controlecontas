@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,6 +28,9 @@ public class Pessoa implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
+	@OneToMany(mappedBy = "pessoa")
+	private List<Conta> contas;
+	
 	public long getId() {
 		return id;
 	}
@@ -34,4 +38,5 @@ public class Pessoa implements Serializable {
 	public void setId(long id) {
 		this.id = id;
 	}
+	
 }
