@@ -42,11 +42,11 @@ public class Conta implements Serializable {
 	@JoinColumn(name = "ID_CONTA_PAI")
 	private Conta contaPai;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = { javax.persistence.CascadeType.ALL })
 	@JoinColumn(name = "ID_PESSOA")
 	private Pessoa pessoa;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "contaPai")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "contaPai", cascade = { javax.persistence.CascadeType.ALL }, orphanRemoval = true)
 	private List<Conta> contasFilhas;
 
 	public String getNome() {
