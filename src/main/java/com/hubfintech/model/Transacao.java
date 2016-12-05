@@ -1,8 +1,8 @@
 package com.hubfintech.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,11 +19,11 @@ public class Transacao {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name = "ID_CONTA_ORIGEM")
 	private Conta contaOrigem;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name = "ID_CONTA_DESTINO")
 	private Conta contaDestino;
 	

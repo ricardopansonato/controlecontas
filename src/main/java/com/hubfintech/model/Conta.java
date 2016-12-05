@@ -2,7 +2,6 @@ package com.hubfintech.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -36,18 +34,14 @@ public class Conta implements Serializable {
 	
 	@Column(name = "DSC_STATUS")
 	@Enumerated(EnumType.ORDINAL)
-	private Status status;
+	private Status status = Status.ATIVO;
 	
-	@ManyToOne
-	@JoinColumn(name = "ID_CONTA_PAI")
-	private Conta contaPai;
+	@Column(name = "ID_CONTA_PAI")
+	private Long contaPai;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.DETACH)
 	@JoinColumn(name = "ID_PESSOA")
 	private Pessoa pessoa;
-	
-	@OneToMany(mappedBy = "contaPai", cascade = { javax.persistence.CascadeType.ALL }, orphanRemoval = true)
-	private List<Conta> contasFilhas;
 
 	public String getNome() {
 		return nome;
@@ -73,11 +67,11 @@ public class Conta implements Serializable {
 		this.status = status;
 	}
 
-	public Conta getContaPai() {
+	public Long getContaPai() {
 		return contaPai;
 	}
 
-	public void setContaPai(Conta contaPai) {
+	public void setContaPai(Long contaPai) {
 		this.contaPai = contaPai;
 	}
 
@@ -87,14 +81,6 @@ public class Conta implements Serializable {
 
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
-	}
-
-	public List<Conta> getContasFilhas() {
-		return contasFilhas;
-	}
-
-	public void setContasFilhas(List<Conta> contasFilhas) {
-		this.contasFilhas = contasFilhas;
 	}
 
 	public Long getId() {
