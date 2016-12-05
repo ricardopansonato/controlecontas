@@ -1,13 +1,10 @@
 package com.hubfintech.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,13 +16,11 @@ public class Transacao {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name = "ID_CONTA_ORIGEM")
-	private Conta contaOrigem;
+	@Column(name = "ID_CONTA_ORIGEM")
+	private Long contaOrigem;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name = "ID_CONTA_DESTINO")
-	private Conta contaDestino;
+	@Column(name = "ID_CONTA_DESTINO")
+	private Long contaDestino;
 	
 	@Column(name = "NM_VALOR")
 	private Double valor;
@@ -33,19 +28,19 @@ public class Transacao {
 	@Column(name = "DSC_APORTE")
 	private String aporte;
 
-	public Conta getContaOrigem() {
+	public Long getContaOrigem() {
 		return contaOrigem;
 	}
 
-	public void setContaOrigem(Conta contaOrigem) {
+	public void setContaOrigem(Long contaOrigem) {
 		this.contaOrigem = contaOrigem;
 	}
 
-	public Conta getContaDestino() {
+	public Long getContaDestino() {
 		return contaDestino;
 	}
 
-	public void setContaDestino(Conta contaDestino) {
+	public void setContaDestino(Long contaDestino) {
 		this.contaDestino = contaDestino;
 	}
 
