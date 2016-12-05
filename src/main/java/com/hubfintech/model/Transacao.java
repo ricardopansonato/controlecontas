@@ -19,11 +19,11 @@ public class Transacao {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@ManyToOne(cascade=CascadeType.MERGE)
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "ID_CONTA_ORIGEM")
 	private Conta contaOrigem;
 	
-	@ManyToOne(cascade=CascadeType.MERGE)
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "ID_CONTA_DESTINO")
 	private Conta contaDestino;
 	
